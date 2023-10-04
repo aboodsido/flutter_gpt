@@ -1,11 +1,12 @@
 import 'package:chatgpt_client/chatgpt_client.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gpt/views/widgets/bubble_chat.dart';
-import 'package:flutter_gpt/views/widgets/waiting_response.dart';
 
 import '../constants/app_consts.dart';
 import '../helper/snackbar_widget.dart';
 import '../model/message.dart';
+import 'widgets/bubble_chat.dart';
+import 'widgets/messgae_textfield.dart';
+import 'widgets/waiting_response.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -58,15 +59,8 @@ class _ChatScreenState extends State<ChatScreen> {
                       },
                     ),
                     Expanded(
-                      child: TextField(
-                        controller: messageController,
-                        decoration: InputDecoration(
-                          enabledBorder: buildOutlineInputBorder(),
-                          focusedBorder: buildOutlineInputBorder(),
-                          hintText: 'Talk to Flutter GPT...',
-                          hintStyle: const TextStyle(color: Colors.grey),
-                        ),
-                      ),
+                      child: MessageTextField(
+                          messageController: messageController),
                     ),
                     IconButton(
                       onPressed: () async {
@@ -98,8 +92,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             showSnackBar(
                                 context, exception.toString(), Colors.red);
                             setState(() {
-                              isLoading =
-                                  false; // Set loading flag to false in case of an exception
+                              isLoading = false;
                             });
                           }
                         }
@@ -113,17 +106,6 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
           WaitingResponseWidget(isLoading: isLoading)
         ],
-      ),
-    );
-  }
-
-  OutlineInputBorder buildOutlineInputBorder() {
-    return OutlineInputBorder(
-      borderSide: const BorderSide(
-        color: Colors.grey,
-      ),
-      borderRadius: BorderRadius.circular(
-        12,
       ),
     );
   }
