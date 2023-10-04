@@ -22,6 +22,15 @@ class _ChatScreenState extends State<ChatScreen> {
   final client = ChatGPTClient(apiKey: AppConsts.apiKey);
   String text = '';
   bool isLoading = false;
+  final listController = ScrollController();
+
+  void scrollDown() {
+    listController.animateTo(
+      listController.position.maxScrollExtent,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeOut,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +44,7 @@ class _ChatScreenState extends State<ChatScreen> {
               children: [
                 Expanded(
                   child: ListView.builder(
+                    controller: listController,
                     itemBuilder: (context, index) {
                       return BubbleChatWidget(
                         message: messagesList[index],
@@ -87,6 +97,7 @@ class _ChatScreenState extends State<ChatScreen> {
                               messagesList.add(
                                   Message(content: gptResponse, isUser: false));
                               isLoading = false;
+                              scrollDown();
                             });
                           } catch (exception) {
                             print(exception.toString());

@@ -11,8 +11,8 @@ class WaitingResponseWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 70,
-      right: 150,
+      bottom: 80,
+      right: MediaQuery.sizeOf(context).width / 3,
       child: isLoading == true
           ? Container(
               width: 180,
