@@ -89,6 +89,7 @@ class _ChatScreenState extends State<ChatScreen> {
                               isLoading = false;
                             });
                           } catch (exception) {
+                            print(exception.toString());
                             showSnackBar(
                                 context, exception.toString(), Colors.red);
                             setState(() {

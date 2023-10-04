@@ -18,15 +18,14 @@ class WaitingResponseWidget extends StatelessWidget {
               width: 180,
               height: 30,
               decoration: BoxDecoration(
-                color: Colors.blue, // Change the color to your desired color
-                borderRadius:
-                    BorderRadius.circular(20.0), // Adjust the radius as needed
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(20.0),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 5,
                     blurRadius: 7,
-                    offset: const Offset(0, 3), // changes the shadow position
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
